@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  GEOKO.cpp
+e:\programmieren\github\ad_v3\ad_v3\geoko.cpp(13): fatal error C1010: Unerwartetes Dateiende während der Suche nach dem vorkompilierten Header. Haben Sie möglicherweise vergessen, im Quellcode "#include "stdafx.h"" einzufügen?
+  DVKE.cpp
+e:\programmieren\github\ad_v3\ad_v3\dvke.cpp(19): fatal error C1010: Unerwartetes Dateiende während der Suche nach dem vorkompilierten Header. Haben Sie möglicherweise vergessen, im Quellcode "#include "stdafx.h"" einzufügen?
+  DVK.cpp
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(73): fatal error C1010: Unerwartetes Dateiende während der Suche nach dem vorkompilierten Header. Haben Sie möglicherweise vergessen, im Quellcode "#include "stdafx.h"" einzufügen?
+  Code wird generiert...
