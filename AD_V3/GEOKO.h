@@ -22,7 +22,7 @@ private:
 	int BrGr;
 	int BrMin;
 	double BrSec;
-	int LaBr;
+	int LaGr;
 	int LaMin;
 	double LaSec;
 

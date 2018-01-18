@@ -8,19 +8,25 @@
 #ifndef DVK_H
 #define DVK_H
 #include "GEOKO.h"
-
+#include <string>
+#include <iostream>
+#include <cstdlib>
+#include <limits>
+#include <fstream>
+using namespace std;
 
 
 
 class DVK {
 public:
-	DVK(int Anzahl);
+	DVK(int a);
+	string keineLeerzeichen(string weg);
 
 private:
 	GEOKO* Anker_V;
 	GEOKO* Anker_R;
 	GEOKO* Middle;
-	GEOKO[] index;
+	GEOKO* index[1000000];
 	int Anz;
 
 };

@@ -5,16 +5,18 @@
 * Created on 16. Januar 2018, 16:07
 */
 
-#include "DVK.h"
+//#include "DVK.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
 #include <limits>
 #include <fstream>
+#include "stdafx.h"
+#include "DVK.h"
 using namespace std;
 
-DVK::DVK(int Anzahl) {
-	this->Anz = Anzahl;
+DVK::DVK(int a) {
+	Anz = a;
 	int i, choice;
 	cout << "Fuer die Datei Daten.csv geben Sie bitte 1 ein.\nFuer die Datei Daten1.csv geben Sie bitte 2 ein.\n";
 	cin >> choice;
@@ -37,21 +39,23 @@ DVK::DVK(int Anzahl) {
 		int hilfe,zeile=0;
 		for (i = 0; i < Anz; i++) {
 			string brgr, lgr;
-			getline(datareader, brgr, ',');
+			//getline(datareader, brgr, ',');
 			getline(datareader, lgr, '\n');
+			brgr = keineLeerzeichen(brgr);
+			lgr = keineLeerzeichen(lgr);
 			double brges = atof(brgr.c_str());
 			double lges = atof(lgr.c_str());
 			GEOKO* temp = new GEOKO();
 			if (i == 0) {
 				Anker_V = temp;
-				temp->SetV = 0;
+				temp->SetV(0);
 			}
 			else if (i == (Anz - 1)) {
 				Anker_R = temp;
-				temp->SetN = 0;
+				temp->SetN(0);
 			}
 			else {
-				temp->SetV = vorher;
+				temp->SetV(vorher);
 			}
 			hilfe = (int) brges/3600;
 			temp->setBrGr(hilfe);
@@ -67,6 +71,19 @@ DVK::DVK(int Anzahl) {
 			temp->setLaSec(hilfe);
 			zeile++;
 		}
-		datareader.close;
+		datareader.close();
 	}
+}
+
+string DVK::keineLeerzeichen(string weg){
+	string neu;
+	int i = 0, a = 0;
+	while (weg[i] != NULL) {
+		if (weg[i] != ' ') {
+			neu[a] = weg[i];
+			a++;
+		}
+		i++;
+	}
+	return neu;
 }

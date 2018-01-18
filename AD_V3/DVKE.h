@@ -16,7 +16,7 @@ public:
 	void SetN(DVKE* N);
 	DVKE* GetN();
 	void SetV(DVKE* V);
-	DVKE* GetV(DVKE* V);
+	DVKE* GetV();
 
 private:
 	DVKE * V;
