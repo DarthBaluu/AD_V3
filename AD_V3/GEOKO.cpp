@@ -44,5 +44,35 @@ void GEOKO::setLaSec(double a){
 	LaSec = a;
 }
 
+bool GEOKO::operator<(GEOKO & in){
+	
+	return false;
+}
+
+
+int GEOKO::getBrGr(){
+	return BrGr;
+}
+
+int GEOKO::getBrMin(){
+	return BrMin;
+}
+
+double GEOKO::getBrSec(){
+	return BrSec;
+}
+
+int GEOKO::getLaGr(){
+	return LaGr;
+}
+
+int GEOKO::getLaMin(){
+	return LaMin;
+}
+
+double GEOKO::getLaSec(){
+	return LaSec;
+}
+
 
 

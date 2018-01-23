@@ -13,11 +13,11 @@ DVKE::DVKE(){
 	N = 0;
 }
 
-void DVKE::SetN(DVKE * N){
-	this->N = N;
+void DVKE::SetN(DVKE * a){
+	N = a;
 }
 
-DVKE * DVKE::GetN(){
+DVKE* DVKE::GetN(){
 	return N;
 }
 
@@ -25,7 +25,7 @@ void DVKE::SetV(DVKE * V){
 	this->V=V;
 }
 
-DVKE * DVKE::GetV(){
+DVKE* DVKE::GetV(){
 	return V;
 }
 

@@ -18,6 +18,16 @@ public:
 	void setLaGr(int a);
 	void setLaMin(int a);
 	void setLaSec(double a);
+
+	bool operator<(GEOKO& in);
+
+	int getBrGr();
+	int getBrMin();
+	double getBrSec();
+	int getLaGr();
+	int getLaMin();
+	double getLaSec();
+
 private:
 	int BrGr;
 	int BrMin;

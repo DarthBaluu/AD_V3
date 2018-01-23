@@ -19,7 +19,7 @@ public:
 	DVKE* GetV();
 
 private:
-	DVKE * V;
+	DVKE* V;
 	DVKE* N;
 
 };

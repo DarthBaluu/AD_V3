@@ -18,5 +18,13 @@
 using namespace std;
 
 int main() {
-	DVK* liste = new DVK(1000000);
+	int anzahl;
+	do {
+		do {
+			cout << "Bitte geben Sie die Anzahl Elemente ein.\n";
+			cin >> anzahl;
+		} while (anzahl < 0 || anzahl>1000000);
+		DVK* liste = new DVK(anzahl);
+		liste->InsertionSort();
+	} while (1);
 }
