@@ -170,58 +170,113 @@ void DVK::split(char * br, char * la, char* eingabe,int laenge){
 	}
 }
 
-void DVK::InsertionSort(){
-	int i,k,l;
-	GEOKO* temp;
+void DVK::InsertionSort() {
+	int i, k, l;
+	GEOKO* temp, *temp_2;
+	temp_2 = index[0];
 	for (i = 1; i < Anz; i++) {
-		//ausgabe(i);
 		temp = index[i];
-		if (i % 1000 == 0) {
-			cout << "Durchgang: " << i << "\n";
+		temp_2 = index[i - 1];
+		if (i % 10000 == 0) {
+			cout << i << "ter Durchgang\n";
 		}
-		for (k = 0; k < i; k++) {
-			if (kleinerals(temp,index[k])) {
-				if (k > 0 && k<Anz) {
-					for (l = i; l >= k; l--) {
-						index[l] = index[l - 1];
-						if (l < Anz-1) {
+		if (kleinerals(temp, temp_2)) {
+			for (k = 0; k < i; k++) {
+				if (kleinerals(temp, index[k])) {
+					if (k > 0 && k < Anz) {
+						for (l = i; l >= k; l--) {
+							index[l] = index[l - 1];
+							if (l < Anz - 1) {
+								index[l + 1]->SetV(index[l]);
+								index[l]->SetN(index[l + 1]);
+							}
+						}
+						index[k] = temp;
+						index[k - 1]->SetN(index[k]);
+						index[k]->SetV(index[k - 1]);
+						index[k + 1]->SetV(index[k]);
+						index[k]->SetN(index[k + 1]);
+						break;
+					}
+					else if (k == 0) {
+						for (l = i; l > k; l--) {
+							index[l] = index[l - 1];
 							index[l + 1]->SetV(index[l]);
 							index[l]->SetN(index[l + 1]);
 						}
+						index[k] = temp;
+						index[k]->SetV(0);
+						index[k]->SetN(index[k + 1]);
+						index[k + 1]->SetV(index[k]);
+						Anker_V = index[k];
+						break;
 					}
-					index[k] = temp;
-					index[k - 1]->SetN(index[k]);
-					index[k]->SetV(index[k - 1]);
-					index[k + 1]->SetV(index[k]);
-					index[k]->SetN(index[k + 1]);
-				}
-				else if (k == 0) {
-					for (l = i; l > k; l--) {
-						index[l] == index[l - 1];
-						index[l + 1]->SetV(index[l]);
-						index[l]->SetN(index[l + 1]);
+					else if (k == Anz) {
+						for (l = i; l > k; l--) {
+							index[l] = index[l - 1];
+							index[l + 1]->SetV(index[l]);
+							index[l]->SetN(index[l + 1]);
+						}
+						index[k] = temp;
+						index[k]->SetV(index[k - 1]);
+						index[k - 1]->SetN(index[k]);
+						index[k]->SetN(0);
+						Anker_R = index[k];
+						break;
 					}
-					index[k] = temp;
-					index[k]->SetV(0);
-					index[k]->SetN(index[k + 1]);
-					index[k + 1]->SetV(index[k]);
-					Anker_V = index[k];
-				}
-				else if (k == Anz) {
-					for (l = i; l > k; l--) {
-						index[l] == index[l - 1];
-						index[l + 1]->SetV(index[l]);
-						index[l]->SetN(index[l + 1]);
-					}
-					index[k] = temp;
-					index[k]->SetV(index[k-1]);
-					index[k-1]->SetN(index[k]);
-					index[k]->SetN(0);
-					Anker_R = index[k];
 				}
 			}
 		}
+		/*else {
+			for (k = 0; k < i; k++) {
+				if (kleinerals(temp, index[k])) {
+					if (k > 0 && k < Anz) {
+						for (l = i; l >= k; l--) {
+							index[l] = index[l - 1];
+							if (l < Anz - 1) {
+								index[l + 1]->SetV(index[l]);
+								index[l]->SetN(index[l + 1]);
+							}
+						}
+						index[k] = temp;
+						index[k - 1]->SetN(index[k]);
+						index[k]->SetV(index[k - 1]);
+						index[k + 1]->SetV(index[k]);
+						index[k]->SetN(index[k + 1]);
+						break;
+					}
+					else if (k == 0) {
+						for (l = i; l > k; l--) {
+							index[l] = index[l - 1];
+							index[l + 1]->SetV(index[l]);
+							index[l]->SetN(index[l + 1]);
+						}
+						index[k] = temp;
+						index[k]->SetV(0);
+						index[k]->SetN(index[k + 1]);
+						index[k + 1]->SetV(index[k]);
+						Anker_V = index[k];
+						break;
+					}
+					else if (k == Anz) {
+						for (l = i; l > k; l--) {
+							index[l] = index[l - 1];
+							index[l + 1]->SetV(index[l]);
+							index[l]->SetN(index[l + 1]);
+						}
+						index[k] = temp;
+						index[k]->SetV(index[k - 1]);
+						index[k - 1]->SetN(index[k]);
+						index[k]->SetN(0);
+						Anker_R = index[k];
+						break;
+					}
+				}
+			}
+		}*/
 	}
+		
+	
 	ofstream fileout;
 	string ausgabe;
 	if (choice == 1) {
@@ -244,7 +299,7 @@ void DVK::InsertionSort(){
 }
 
 bool DVK::kleinerals(GEOKO * li, GEOKO * re){
-	double laengeli = 0, breiteli = 0, laengere = 0, breitere = 0, laengemi = 0, breitemi = 0, abstand_li = 0, abstand_re = 0;
+	/*double laengeli = 0, breiteli = 0, laengere = 0, breitere = 0, laengemi = 0, breitemi = 0, abstand_li = 0, abstand_re = 0;
 	breiteli += (li->getBrGr() * 3600) + (li->getBrMin() * 60) + li->getBrSec();
 	laengeli += (li->getLaGr() * 3600) + (li->getLaMin() * 60) + li->getLaSec();
 	breitere += (re->getBrGr() * 3600) + (re->getBrMin() * 60) + re->getBrSec();
@@ -265,6 +320,53 @@ bool DVK::kleinerals(GEOKO * li, GEOKO * re){
 		return true;
 	}else{
 	return false;
+	}*/
+	double re_1, li_1;
+	li_1 = (((li->getBrGr() - Middle->getBrGr())*(li->getBrGr() - Middle->getBrGr())) + ((li->getLaGr() - Middle->getLaGr())*(li->getLaGr() - Middle->getLaGr())));
+	re_1 = (((re->getBrGr() - Middle->getBrGr())*(re->getBrGr() - Middle->getBrGr())) + ((re->getLaGr() - Middle->getLaGr())*(re->getLaGr() - Middle->getLaGr())));
+	if (li_1 < 0) {
+		li_1 = li_1*-1;
+	}
+	if (re_1 < 0) {
+		re_1 = re_1*-1;
+	}
+	if (li_1 < re_1) {
+		return true;
+	}
+	else if(re_1<li_1){
+		return false;
+	}
+	else {
+		li_1 = (((li->getBrMin() - Middle->getBrMin())*(li->getBrMin() - Middle->getBrMin())) + ((li->getLaMin() - Middle->getLaMin())*(li->getLaMin() - Middle->getLaMin())));
+		re_1 = (((re->getBrMin() - Middle->getBrMin())*(re->getBrMin() - Middle->getBrMin())) + ((re->getLaMin() - Middle->getLaMin())*(re->getLaMin() - Middle->getLaMin())));
+		if (li_1 < 0) {
+			li_1 = li_1*-1;
+		}
+		if (re_1 < 0) {
+			re_1 = re_1*-1;
+		}
+		if (li_1 < re_1) {
+			return true;
+		}
+		else if (re_1<li_1) {
+			return false;
+		}
+		else {
+			li_1 = (((li->getBrSec() - Middle->getBrSec())*(li->getBrSec() - Middle->getBrSec())) + ((li->getLaSec() - Middle->getLaSec())*(li->getLaSec() - Middle->getLaSec())));
+			re_1 = (((re->getBrSec() - Middle->getBrSec())*(re->getBrSec() - Middle->getBrSec())) + ((re->getLaSec() - Middle->getLaSec())*(re->getLaSec() - Middle->getLaSec())));
+			if (li_1 < 0) {
+				li_1 = li_1*-1;
+			}
+			if (re_1 < 0) {
+				re_1 = re_1*-1;
+			}
+			if (li_1 < re_1) {
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
 	}
 }
 
