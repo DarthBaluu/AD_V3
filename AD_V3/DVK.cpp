@@ -13,6 +13,7 @@
 #include <fstream>
 #include "stdafx.h"
 #include "DVK.h"
+#include <time.h>
 using namespace std;
 
 DVK::DVK(int a) {
@@ -136,7 +137,22 @@ DVK::DVK(int a) {
 		Middle = mitte;
 		cout << "Durchschnitt der Breite: " << allebreiten << "\nDurchschnitt der Laenge: " << allelaengen<<"\n";
 		cout << "Ende des Durchgangs.\n\n\n";
-		
+		for (i = 0; i < Anz; i++) {
+			GEOKO* li = index[i];
+			double laenge = 0, breite = 0, laengemi = 0, breitemi = 0, abstand = 0;
+			breite = (li->getBrGr() * 3600) + (li->getBrMin() * 60) + li->getBrSec();
+			laenge = (li->getLaGr() * 3600) + (li->getLaMin() * 60) + li->getLaSec();
+			
+			breitemi += (Middle->getBrGr() * 3600) + (Middle->getBrMin() * 60) + Middle->getBrSec();
+			laengemi += (Middle->getLaGr() * 3600) + (Middle->getLaMin() * 60) + Middle->getLaSec();
+
+			abstand = sqrt(((breite-breitemi)*(breite - breitemi))+((laenge-laengemi)*(laenge - laengemi)));
+			if (abstand < 0) {
+			abstand = abstand * (-1);
+			}
+			index[i]->setabstand(abstand);
+			
+		}
 	}
 
 }
@@ -172,13 +188,17 @@ void DVK::split(char * br, char * la, char* eingabe,int laenge){
 
 void DVK::InsertionSort() {
 	int i, k, l;
+	time_t beginn,aktuell;
+	time(&beginn);
 	GEOKO* temp, *temp_2;
 	temp_2 = index[0];
 	for (i = 1; i < Anz; i++) {
 		temp = index[i];
 		temp_2 = index[i - 1];
 		if (i % 10000 == 0) {
-			cout << i << "ter Durchgang\n";
+			time(&aktuell);
+			cout << i << "ter Durchgang.\nBenoetigte Zeit: "<<aktuell-beginn<<"\n\n\n";
+			beginn = aktuell;
 		}
 		if (kleinerals(temp, temp_2)) {
 			for (k = 0; k < i; k++) {
@@ -320,7 +340,7 @@ bool DVK::kleinerals(GEOKO * li, GEOKO * re){
 		return true;
 	}else{
 	return false;
-	}*/
+	}
 	double re_1, li_1;
 	li_1 = (((li->getBrGr() - Middle->getBrGr())*(li->getBrGr() - Middle->getBrGr())) + ((li->getLaGr() - Middle->getLaGr())*(li->getLaGr() - Middle->getLaGr())));
 	re_1 = (((re->getBrGr() - Middle->getBrGr())*(re->getBrGr() - Middle->getBrGr())) + ((re->getLaGr() - Middle->getLaGr())*(re->getLaGr() - Middle->getLaGr())));
@@ -367,7 +387,14 @@ bool DVK::kleinerals(GEOKO * li, GEOKO * re){
 				return false;
 			}
 		}
+	}*/
+	if (li->getabstand() < re->getabstand()) {
+		return true;
 	}
+	else {
+		return false;
+	}
+
 }
 
 void DVK::ausgabe(int a){

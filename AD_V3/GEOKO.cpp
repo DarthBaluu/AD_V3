@@ -44,6 +44,10 @@ void GEOKO::setLaSec(double a){
 	LaSec = a;
 }
 
+void GEOKO::setabstand(double a){
+	abstand = a;
+}
+
 bool GEOKO::operator<(GEOKO & in){
 	
 	return false;
@@ -72,6 +76,10 @@ int GEOKO::getLaMin(){
 
 double GEOKO::getLaSec(){
 	return LaSec;
+}
+
+double GEOKO::getabstand(){
+	return abstand;
 }
 
 

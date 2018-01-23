@@ -18,6 +18,8 @@ public:
 	void setLaGr(int a);
 	void setLaMin(int a);
 	void setLaSec(double a);
+	void setabstand(double a);
+
 
 	bool operator<(GEOKO& in);
 
@@ -27,6 +29,7 @@ public:
 	int getLaGr();
 	int getLaMin();
 	double getLaSec();
+	double getabstand();
 
 private:
 	int BrGr;
@@ -35,6 +38,7 @@ private:
 	int LaGr;
 	int LaMin;
 	double LaSec;
+	double abstand;
 
 };
 
