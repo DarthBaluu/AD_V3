@@ -25,6 +25,12 @@ public:
 	void split(char* br, char* la, char* eingabe, int laenge);
 	void InsertionSort();
 	void ausgabe(GEOKO* in);
+	bool kleinerals(GEOKO* li, GEOKO* re);
+	void HeapSort();
+	void heapDown(int anz_uns);
+	void initMaxheap();
+	void vertausche(long ii, long jj);
+
 
 private:
 	GEOKO * Anker_V;

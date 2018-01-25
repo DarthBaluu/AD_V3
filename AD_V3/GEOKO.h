@@ -30,6 +30,7 @@ public:
 	int getLaMin();
 	double getLaSec();
 	double getabstand();
+	
 
 private:
 	int BrGr;

@@ -1,11 +1,12 @@
-﻿  stdafx.cpp
-  main.cpp
-  GEOKO.cpp
-  DVKE.cpp
-  DVK.cpp
+﻿  DVK.cpp
 e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(79): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
 e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(85): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
 e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(115): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
 e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(121): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
-  Code wird generiert...
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(166): warning C4101: "aktuell": Unreferenzierte lokale Variable
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(298): warning C4101: "d_p2": Unreferenzierte lokale Variable
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(299): warning C4101: "node": Unreferenzierte lokale Variable
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(298): warning C4101: "d_p1": Unreferenzierte lokale Variable
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(301): warning C4101: "j": Unreferenzierte lokale Variable
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(298): warning C4101: "temp_ver": Unreferenzierte lokale Variable
   AD_V3.vcxproj -> E:\Programmieren\GitHub\AD_V3\x64\Debug\AD_V3.exe

@@ -49,7 +49,7 @@ void GEOKO::setabstand(double a){
 }
 
 bool GEOKO::operator<(GEOKO & in) {
-	if (abstand < in.getabstand()) {
+	if (this->abstand < in.getabstand()) {
 		return true;
 	}
 	return false;

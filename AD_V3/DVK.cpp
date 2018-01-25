@@ -170,14 +170,14 @@ void DVK::InsertionSort() {
 	for (i = 1; i < Anz; i++) {
 		temp = index[i];
 		temp_2 = index[i - 1];
-		if (i % 10000 == 0) {
+		/*if (i % 10000 == 0) {
 			time(&aktuell);
 			cout << i << "ter Durchgang.\nBenoetigte Zeit: " << aktuell - beginn << "\n\n\n";
 			beginn = aktuell;
-		}
-		if (temp<temp_2) {
+		}*/
+		if (kleinerals(temp,temp_2)) {
 			for (k = 0; k < i; k++) {
-				if (temp<temp_2) {
+				if (kleinerals(temp, index[k])) {
 					if (k > 0 && k < Anz) {
 						for (l = i; l >= k; l--) {
 							index[l] = index[l - 1];
@@ -258,3 +258,327 @@ void DVK::ausgabe(GEOKO* in) {
 	la3 = to_string(in->getLaSec());
 	cout << "Breitengrad: " << br1 << "\nBreitenminuten: " << br2 << "\nBreitensekunden: " << br3 << "\nLaengengrad: " << la1 << "\nLaengenminuten: " << la2 << "\nLaengensekunden: " << la3 << "\n\n\n";
 }
+
+bool DVK::kleinerals(GEOKO * li, GEOKO * re) {
+
+		if (li->getabstand() < re->getabstand()) {
+		return true;
+		
+	}
+	else {
+		return false;
+	}
+	
+}
+
+
+
+//################################
+// -------HEAPSORT Start----------
+//################################
+void DVK::HeapSort() {
+
+	//Knoten = index
+	//Knoten 1 -> 2,3 || Knoten 2 -> 4,5 || Knoten 3 -> 6,7
+	//Knotenindex + (Knotenindex +1) = Anfang der Kinder
+	//+-----------------+------------------+
+	//|    Kind 1       |      Kind 2      |
+	//+-----------------|------------------|
+	//| Knotenindex *2  | Kind1.index +1   |
+	//+-----------------+------------------+
+	//
+	// Gegeben
+	// Anzahl der Objekte im Array "anz"
+	// Anzahl der noch zu sortierenden Objekte "anz_uns"
+	// sortierte anz - unsoriterte
+	//
+
+
+
+	double temp_ver, d_p1, d_p2;
+	int node; // Aktueller Knoten
+	int anz_uns = Anz;
+	int j; // zähler;
+
+
+
+		   //#####################################################################################
+		   //--------------------------   Aktueller Code   ---------------------------------------
+		   //#####################################################################################
+
+		   //Maxheap aufstellen
+	initMaxheap();
+
+	for (int i = 0; i < Anz; i++) {
+
+		//if (anz_uns < 1) { break; }
+
+		//vertausche erstes mit letzten Element
+		vertausche(0, anz_uns - 1);
+		//anzahl der unsortierten dekrementieren
+		anz_uns--;
+
+		//versickern des obersten elements
+		heapDown(anz_uns);
+
+	}
+
+
+	//#####################################################################################
+	//#####################################################################################
+
+
+
+
+
+
+	/*
+	for(int i=0; i<anz_uns; i++){
+	if (anz_uns >= 2) {
+	node = (anz_uns / 2) - 1;
+	}
+	else {
+	node = 0;
+	}
+	j = anz_uns;
+	for (int i = node; i >= 0; i--) {
+
+	if ((index[i]->Getdist()) < (index[(i * 2) + 1]->Getdist())) {
+	vertausche(i, ((i * 2) + 1));
+	}
+	if ((((i * 2) + 2) != j && anz_uns != 1) && (index[i]->Getdist()) < (index[(i * 2) + 2]->Getdist())) {
+	{
+	vertausche(i, ((i * 2) + 2));
+	}
+	}
+	j--;
+
+	}
+	*/
+
+
+	//erstes mit letzten tauschen
+	//vertausche((0), (anz_uns - 1));
+	// anz_uns decrementieren
+
+	//anz_uns--;
+
+
+	//
+	// Abstände init
+	//double root_middle, left_middle, right_middle;
+	//
+	// Indizes init
+	//int root, left, right;
+
+
+	/*
+	while (anz_uns != 0) {
+	if (anz_uns >= 2) {
+	node = (anz_uns / 2) - 1;
+	}
+	else {
+	node = 0;
+	}
+	j = anz_uns;
+	for (int i = node; i >= 0; i--) {
+	//indizes Aktualisieren
+	root = i;
+	left = (i * 2) + 1;
+	right = (i * 2) + 2;
+	//Knoten werte Aktualisieren
+	root_middle = abs(index[root]->Getdist());
+	left_middle = abs(index[left]->Getdist());
+	if (right != j) {
+	right_middle = abs(index[right]->Getdist());
+	}
+	if (root_middle < left_middle) {
+	vertausche(root, left);
+	//Knoten werte Aktualisieren
+	root_middle = abs(index[root]->Getdist());
+	left_middle = abs(index[left]->Getdist());
+	if (right != j) {
+	right_middle = abs(index[right]->Getdist());
+	}
+	}
+	if (right != j && anz_uns != 1) {
+	if (root_middle < right_middle)
+	{
+	vertausche(root, right);
+	}
+	}
+	j--;
+	}
+	//erstes mit letzten tauschen
+	vertausche((0), (anz_uns - 1));
+	// anz_uns decrementieren
+	anz_uns--;
+	}
+	*/
+
+
+	//korrektur
+	//vertausche(0, 1);
+
+}
+
+void DVK::heapDown(int anz_uns) {
+	int node = 0;
+	int j = Anz;
+
+	for (int i = 0; i < Anz; i++) {
+
+
+		/*
+		root = node;
+		left = (node * 2) + 1;
+		right = (node * 2) + 2;
+		*/
+
+		if (node * 2 <= anz_uns && anz_uns >= 1) {
+
+			// if Right+Left Available
+			if (index[(node * 2) + 2] != nullptr) {
+				// if			left				   >				right               &&					left			   >	      root	         && (left.index noch zu sortieren?)
+				if ((index[(node * 2) + 1]->getabstand()) > (index[(node * 2) + 2]->getabstand()) && ((index[(node * 2) + 1]->getabstand()) > index[node]->getabstand()) && ((node * 2 + 1) < anz_uns)) {
+
+					//vertausche root mit left
+					vertausche(node, ((node * 2) + 1));
+
+					//index auf knoten left setzten
+					node = node * 2 + 1;
+				}
+
+				//else if       right					   >			root		    && (right.index noch zu sortieren?)
+				else if (((index[(node * 2) + 2]->getabstand()) >= index[node]->getabstand()) && ((node * 2 + 2) < anz_uns)) {
+					//vertausche root mit right
+					vertausche(node, ((node * 2) + 2));
+
+					//index auf knoten right setzten
+					node = node * 2 + 2;
+				}
+
+				// else right == root 
+				else {
+					//versickern Fertig
+					break;
+				}
+
+			}
+			// if Left Available
+			else if (index[(node * 2) + 1] != nullptr) {
+				// if			   	left			    >			root		  &&      (left.index noch zu sortieren?)
+				if (((index[(node * 2) + 1]->getabstand()) > index[node]->getabstand()) && ((node * 2 + 1) != anz_uns)) {
+
+					//vertausche root mit left
+					vertausche(node, ((node * 2) + 1));
+
+					//index auf knoten left setzten
+					node = node * 2 + 1;
+				}
+				else {
+					//versickern Fertig
+					break;
+				}
+
+			}
+
+		}
+		else {
+			//versickern Fertig
+			break;
+		}
+	}
+
+
+
+
+
+}
+
+void DVK::initMaxheap() {
+	int anz_uns = Anz;
+	int j = anz_uns;
+	int node;
+
+	if (anz_uns >= 2) {
+		node = (anz_uns / 2) - 1;
+	}
+	else {
+		node = 0;
+	}
+
+
+	for (int i = node; i >= 0; i--) {
+
+		if ((index[i]->getabstand()) < (index[(i * 2) + 1]->getabstand())) {
+			vertausche(i, ((i * 2) + 1));
+		}
+
+		if ((((i * 2) + 2) != j && anz_uns != 1) && (index[i]->getabstand()) < (index[(i * 2) + 2]->getabstand())) {
+			vertausche(i, ((i * 2) + 2));
+		}
+
+
+		j--;
+
+	}
+}
+
+// vertauscht index First mit Index Second und behält doppelte verkettung bei
+void DVK::vertausche(long ii, long jj) {
+
+
+	GEOKO * i = index[ii];
+	GEOKO * j = index[jj];
+
+	DVKE * iN = i->GetN();
+	DVKE * iV = i->GetV();
+	DVKE * jN = j->GetN();
+	DVKE * jV = j->GetV();
+
+	if (iN) iN->SetV(j);
+	if (iV) iV->SetN(j);
+	if (jN) jN->SetV(i);
+	if (jV) jV->SetN(i);
+
+	j->SetV(iV);
+	i->SetN(jN);
+
+	if ((ii + 1) == jj) {
+		i->SetV(j);
+		j->SetN(i);
+	}
+	else {
+		i->SetV(jV);
+		j->SetN(iN);
+	}
+
+	index[ii] = j;
+	index[jj] = i;
+
+
+
+
+
+
+	// temporäre gespeichert G1
+	//	GEOKO *temp1 = index[First];
+	/*
+	DVKE *t_V, *t_N;
+	GEOKO *temp1 = new GEOKO;
+	GEOKO *temp2 = new GEOKO;
+	// werte von First zwischenspeichern in temp1 Pointer
+	copy(temp1, index[First]);
+	// index[First] POinter = Index[Second]
+	copy(index[First], index[Second]);
+	//index[Second] Pointer = Index[First]
+	copy(index[Second], temp1);
+	//index[First]->SetN(index[Second]->GetN());
+	//index[First]->SetV(index[Second]->GetV());
+	*/
+
+}
+//################################
+// -------HEAPSORT End  ----------
+//################################
