@@ -48,8 +48,10 @@ void GEOKO::setabstand(double a){
 	abstand = a;
 }
 
-bool GEOKO::operator<(GEOKO & in){
-	
+bool GEOKO::operator<(GEOKO & in) {
+	if (abstand < in.getabstand()) {
+		return true;
+	}
 	return false;
 }
 

@@ -18,13 +18,36 @@
 using namespace std;
 
 int main() {
+
+	int choice;
 	int anzahl;
+	DVK* liste = NULL;
 	do {
-		do {
+		cout << "Bitte wählen Sie einen der Folgenden Punkte:\n'1' fuer das Anlegen einer Verketteten Liste.\n'2' fuer das Sortieren mit Insertion sort.\n'3' fuer das Sortieren mit Merge sort.\n'0' um das Programm zu beenden.\n\n";
+		cin >> choice;
+		switch (choice) {
+
+		case 1: do {
 			cout << "Bitte geben Sie die Anzahl Elemente ein.\n";
 			cin >> anzahl;
+			cout << "\n";
 		} while (anzahl < 0 || anzahl>1000000);
-		DVK* liste = new DVK(anzahl);
-		liste->InsertionSort();
-	} while (1);
+		liste = new DVK(anzahl);
+		break;
+
+
+		case 2: liste->InsertionSort();
+			break;
+		case 3:
+			break;
+
+		case 0: cout << "Das Programm wurde beendet.";
+			break;
+
+		default:
+			break;
+		}
+
+	} while (choice != 0);
 }
+

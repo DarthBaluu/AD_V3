@@ -21,14 +21,13 @@ using namespace std;
 class DVK {
 public:
 	DVK(int a);
-	string keineLeerzeichen(string weg);
+
 	void split(char* br, char* la, char* eingabe, int laenge);
 	void InsertionSort();
-	bool kleinerals(GEOKO* li,GEOKO* re);
-	void ausgabe(int a);
+	void ausgabe(GEOKO* in);
 
 private:
-	GEOKO* Anker_V;
+	GEOKO * Anker_V;
 	GEOKO* Anker_R;
 	GEOKO* Middle;
 	GEOKO* index[1000000];

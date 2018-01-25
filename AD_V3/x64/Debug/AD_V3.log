@@ -1,1 +1,11 @@
-﻿  AD_V3.vcxproj -> D:\Programmieren\GitHub\AD_V3\x64\Debug\AD_V3.exe
+﻿  stdafx.cpp
+  main.cpp
+  GEOKO.cpp
+  DVKE.cpp
+  DVK.cpp
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(79): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(85): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(115): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
+e:\programmieren\github\ad_v3\ad_v3\dvk.cpp(121): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
+  Code wird generiert...
+  AD_V3.vcxproj -> E:\Programmieren\GitHub\AD_V3\x64\Debug\AD_V3.exe
